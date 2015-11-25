@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<spider>
+
+	<!-- The spider parses url list,use [,] to separate the url.-->
+	<urls>http://news.163.com/</urls>
+	
+	<!--The spider parse mode. 
+	[attach] means this spider will join the master spider,so you should config the master ip address; 
+	[single] means this spider will parse alone, here you shouldn't config the master ip address  -->
+	<mode></mode>
+	<master-ip></master-ip>
+	<!-- The worker number means how many worker will parse together. -->
+	<worker-number></worker-number>
+	
+	<!-- The deep that the spider will mostly parse -->
+	<deep></deep>
+	
+	<!-- The number of pages that the spider will mostly parse -->
+	<page-number></page-number>
+	
+	<!-- Where the page stores, default is D://dream spider-->
+	<dir></dir>
+	
+	<!-- Only parse the url that is the sub url of the urls
+	For example the urls you given is http://htmlparser.sourceforge.net/,
+	only http://htmlparser.sourceforge.net/****** url will parsed. If the 
+	url not started with http://htmlparser.sourceforge.net/ , it will be ignored.
+	
+	  -->
+	<only-inside>true</only-inside>
+	<!-- When the web the user want to parse need username and password, you must provide the username & password -->
+	<need-authority>false</need-authority>
+	<username></username>
+	<userpassword></userpassword>
+	
+	
+</spider>
