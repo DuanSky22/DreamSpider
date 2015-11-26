@@ -5,8 +5,6 @@
 */
 package com.duansky.dreamspider.html;
 
-import static com.duansky.dreamspider.html.HtmlParserString.META_TAGS;
-
 import java.util.regex.Pattern;
 
 public class HtmlParserString {

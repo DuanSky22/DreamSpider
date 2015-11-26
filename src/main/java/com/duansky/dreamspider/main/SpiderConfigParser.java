@@ -32,7 +32,7 @@ public class SpiderConfigParser {
 		DreamSpiderConfig dsc=new DreamSpiderConfig();
 		SAXReader saxReader=new SAXReader();
 		try {
-			Document doc=saxReader.read(SpiderConfigParser.class.getClassLoader().getResourceAsStream("spider.xml"));
+			Document doc=saxReader.read(SpiderConfigParser.class.getClassLoader().getResourceAsStream("dream-spider.xml"));
 			Element root=doc.getRootElement();
 			for(Iterator<Element> iter=root.elementIterator();iter.hasNext();){
 				Element elem=iter.next();
