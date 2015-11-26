@@ -22,7 +22,7 @@ public class Watcher implements Runnable{
 				e.printStackTrace();
 			}
 		}
-		System.out.println("By now the manager is alive?"+manager.isAlive());
+		System.out.println("By now the manager is shut down!");
 	}
 
 }

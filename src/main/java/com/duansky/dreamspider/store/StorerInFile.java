@@ -22,6 +22,7 @@ public class StorerInFile implements Runnable,Storer{
 	private Manager manager=null;
 	private String baseUrl="D://dream sp";
 	private ParseResult pr=null;
+	private String[] format={"html","htm","asp","aspx","jsp"};
 	public StorerInFile(Manager manager){
 		this.manager=manager;
 		this.baseUrl=manager.getDsc().getDir();
@@ -41,35 +42,37 @@ public class StorerInFile implements Runnable,Storer{
 	}
 
 	public void store(String url, String content,String encoding) {
+		if(encoding==null){
+			System.out.println("*******************What the fuck!***********************\n "
+					+ "we didn't find the charset ? \n**********************************************");
+			encoding="utf-8";
+		}
 		int pos=-1;
-		if((pos=url.indexOf("html"))!=-1)
-		{
-			if(pos==url.length()-4)
-				url = url.replaceAll("[\\?/:*|<>\"]", "_");
-			else
-				url = url.replaceAll("[\\?/:*|<>\"]", "_")+".html";
-			File file=new File(baseUrl+File.separator+url);
-			if(!file.exists())
-				try {
-					file.createNewFile();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+		//TODO Maybe we not only can store html file, we can also store other format file.
+		url = url.replaceAll("[\\?/:*|<>\"]", "_");
+		if((pos=url.indexOf("html"))!=-1 && pos!=url.length()-4)
+			url = url.replaceAll("[\\?/:*|<>\"]", "_")+".html";
+		File file=new File(baseUrl+File.separator+url);
+		if(!file.exists())
 			try {
-				BufferedWriter bw=new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file),encoding));
-				bw.write(content);
-				bw.flush();
-				bw.close();
-			} catch (UnsupportedEncodingException e) {
-				e.printStackTrace();
-				return;
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-				return;
+				file.createNewFile();
 			} catch (IOException e) {
 				e.printStackTrace();
-				return;
 			}
+		try {
+			BufferedWriter bw=new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file),encoding));
+			bw.write(content);
+			bw.flush();
+			bw.close();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			return;
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return;
 		}
 	}
 	

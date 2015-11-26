@@ -3,24 +3,24 @@
 <spider>
 
 	<!-- The spider parses url list,use [,] to separate the url.-->
-	<urls>http://news.163.com/</urls>
+	<urls>http://www.qq.com/</urls>
 	
 	<!--The spider parse mode. 
 	[attach] means this spider will join the master spider,so you should config the master ip address; 
 	[single] means this spider will parse alone, here you shouldn't config the master ip address  -->
-	<mode></mode>
+	<mode>single</mode>
 	<master-ip></master-ip>
 	<!-- The worker number means how many worker will parse together. -->
-	<worker-number></worker-number>
+	<worker-number>4</worker-number>
 	
 	<!-- The deep that the spider will mostly parse -->
-	<deep></deep>
+	<deep>4</deep>
 	
 	<!-- The number of pages that the spider will mostly parse -->
-	<page-number></page-number>
+	<page-number>10000</page-number>
 	
 	<!-- Where the page stores, default is D://dream spider-->
-	<dir></dir>
+	<dir>D://dream spider/souhu/</dir>
 	
 	<!-- Only parse the url that is the sub url of the urls
 	For example the urls you given is http://htmlparser.sourceforge.net/,

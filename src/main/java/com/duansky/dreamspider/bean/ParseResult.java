@@ -1,18 +1,15 @@
  package com.duansky.dreamspider.bean;
 
-import static com.duansky.dreamspider.util.DreamSpiderString.*;
-import static com.duansky.dreamspider.util.DreamSpiderString.PARSED_URLS;
-import static com.duansky.dreamspider.util.DreamSpiderString.TOTAL_PARSED_URL_NUMBER;
-import static com.duansky.dreamspider.util.DreamSpiderString.TOTAL_URLS;
-import static com.duansky.dreamspider.util.DreamSpiderString.WAITING_URLS;
+import static com.duansky.dreamspider.util.DreamSpiderString.Z_DISTRIBUTE_LOCK;
+import static com.duansky.dreamspider.util.DreamSpiderString.Z_TOTAL_URLS;
 
 import java.util.List;
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.atomic.AtomicLong;
 
 import com.hazelcast.core.HazelcastInstance;
-import com.hazelcast.core.IList;
 import com.hazelcast.core.ILock;
-import com.hazelcast.core.IMap;
-import com.hazelcast.core.IQueue;
 import com.hazelcast.core.ISet;
 /**
  * ParseResult record the parse result, includes waiting/parsed/failed url list.
@@ -26,23 +23,23 @@ public class ParseResult {
 	private ILock lock=null; //only one thread can add url.
 	
 	private ISet<String> totalUrl; //total url including waiting/parsing/failed url.
-	private IQueue<UrlWapper> waitingUrl; //current waiting url queue.
-	private IQueue<Page> parsedUrl; //The waiting url been parsed will add to parsed url queue,but the 
+	
+	private ConcurrentLinkedQueue<UrlWapper> waitingUrl; //current waiting url queue.
+	private ConcurrentLinkedQueue<Page> parsedUrl; //The waiting url been parsed will add to parsed url queue,but the 
 									//store method will consume the parsed url queue, so this queue indicate
 									//that the current left parsed url that didn't be consumed.
-	private IList<Page> failedUrl;
-	private IMap<String,Integer> totalParsedUrlNumber;
+	private ConcurrentLinkedQueue<Page> failedUrl;
+	private AtomicLong parsedUrlNumber;
 	
 
 	
 	public ParseResult(HazelcastInstance node){
-		lock=node.getLock(DISTRIBUTE_LOCK);
-		totalUrl=node.getSet(TOTAL_URLS);
-		waitingUrl=node.getQueue(WAITING_URLS);
-		parsedUrl=node.getQueue(PARSED_URLS);
-		failedUrl=node.getList(FAILED_URLS);
-		totalParsedUrlNumber=node.getMap(TOTAL_PARSED_URL_NUMBER);
-		totalParsedUrlNumber.put(TOTAL_PARSED_URL_NUMBER, 0);
+		lock=node.getLock(Z_DISTRIBUTE_LOCK);
+		totalUrl=node.getSet(Z_TOTAL_URLS);
+		waitingUrl=new ConcurrentLinkedQueue<UrlWapper>();
+		parsedUrl=new ConcurrentLinkedQueue<Page>();
+		failedUrl=new ConcurrentLinkedQueue<Page>();
+		parsedUrlNumber=new AtomicLong(0);
 	}
 	
 	public boolean isParsed(String url){
@@ -62,6 +59,7 @@ public class ParseResult {
 		if(!isParsed(url.getUrl())){
 			totalUrl.add(url.getUrl());
 			waitingUrl.add(url);
+			parsedUrlNumber.incrementAndGet();
 		}
 		
 	}
@@ -79,29 +77,16 @@ public class ParseResult {
 	}
 	
 	public void addParseUrl(Page url){
-		try{
-			totalParsedUrlNumber.lock(TOTAL_PARSED_URL_NUMBER);
-			totalParsedUrlNumber.put(TOTAL_PARSED_URL_NUMBER, totalParsedUrlNumber.get(TOTAL_PARSED_URL_NUMBER)+1);
-			parsedUrl.add(url);
-		}
-		finally{
-			totalParsedUrlNumber.unlock(TOTAL_PARSED_URL_NUMBER);
-		}
+			parsedUrl.add(url);	
 	}
 	
-	public int getPraseUrlSize(){
-		return totalParsedUrlNumber.get(TOTAL_PARSED_URL_NUMBER);
+	public long getPraseUrlSize(){
+		return parsedUrlNumber.get();
 	}
 	
 	public void addFailedUrl(Page url){
-		try{
-			totalParsedUrlNumber.lock(TOTAL_PARSED_URL_NUMBER);
-			totalParsedUrlNumber.put(TOTAL_PARSED_URL_NUMBER, totalParsedUrlNumber.get(TOTAL_PARSED_URL_NUMBER)+1);
 			failedUrl.add(url);
-		}
-		finally{
-			totalParsedUrlNumber.unlock(TOTAL_PARSED_URL_NUMBER);
-		}
+			parsedUrlNumber.incrementAndGet();
 	}
 	
 	public void addWaitingUrls(List<UrlWapper> urls){
