@@ -16,7 +16,7 @@ import org.apache.http.protocol.HTTP;
 public class InputStreamWapper {
 
 	private byte[] input = null;
-	private String charset = HTTP.DEF_CONTENT_CHARSET.toString();
+	private String charset = "GB2312";
 	private String content = "";
 
 	public InputStreamWapper(byte[] input) {

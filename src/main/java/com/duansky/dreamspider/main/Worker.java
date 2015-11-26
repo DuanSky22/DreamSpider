@@ -87,7 +87,7 @@ public class Worker implements Runnable {
 			SuccessPage page = new SuccessPage();
 			HttpEntity httpEntity = response.getEntity();
 			
-			String encoding = "gb2312";
+			String encoding = "";
 			String content="";
 			
 			String temp = null;

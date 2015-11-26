@@ -3,7 +3,7 @@
 <spider>
 
 	<!-- The spider parses url list,use [,] to separate the url.-->
-	<urls>http://www.iscas.ac.cn/</urls>
+	<urls>http://www.163.com/</urls>
 	
 	<!--The spider parse mode. 
 	[attach] means this spider will join the master spider,so you should config the master ip address; 
@@ -20,7 +20,7 @@
 	<page-number>10000</page-number>
 	
 	<!-- Where the page stores, default is D://dream spider-->
-	<dir>D://dream spider/qq/</dir>
+	<dir>D://dream spider/163/</dir>
 	
 	<!-- Only parse the url that is the sub url of the urls
 	For example the urls you given is http://htmlparser.sourceforge.net/,
