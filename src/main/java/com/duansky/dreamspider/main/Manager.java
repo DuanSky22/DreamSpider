@@ -103,7 +103,6 @@ public class Manager {
 	}
 
 	public void start() {
-
 		List<UrlWapper> urls = new ArrayList<UrlWapper>();
 		for (String url : dsc.getUrlList()) {
 			UrlWapper urlWapper = new UrlWapper();

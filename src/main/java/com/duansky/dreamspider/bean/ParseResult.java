@@ -24,7 +24,7 @@ public class ParseResult {
 	
 	private ISet<String> totalUrl; //total url including waiting/parsing/failed url.
 	
-	private ConcurrentLinkedQueue<UrlWapper> waitingUrl; //current waiting url queue.
+	private LinkedBlockingQueue<UrlWapper> waitingUrl; //current waiting url queue.
 	private ConcurrentLinkedQueue<Page> parsedUrl; //The waiting url been parsed will add to parsed url queue,but the 
 									//store method will consume the parsed url queue, so this queue indicate
 									//that the current left parsed url that didn't be consumed.
@@ -36,7 +36,7 @@ public class ParseResult {
 	public ParseResult(HazelcastInstance node){
 		lock=node.getLock(Z_DISTRIBUTE_LOCK);
 		totalUrl=node.getSet(Z_TOTAL_URLS);
-		waitingUrl=new ConcurrentLinkedQueue<UrlWapper>();
+		waitingUrl=new LinkedBlockingQueue<UrlWapper>();
 		parsedUrl=new ConcurrentLinkedQueue<Page>();
 		failedUrl=new ConcurrentLinkedQueue<Page>();
 		parsedUrlNumber=new AtomicLong(0);

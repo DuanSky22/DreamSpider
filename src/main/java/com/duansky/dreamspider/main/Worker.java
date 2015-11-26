@@ -89,24 +89,18 @@ public class Worker implements Runnable {
 			System.out.println("parse " + urlWapper.getUrl() + " success!====");
 			SuccessPage page = new SuccessPage();
 			HttpEntity httpEntity = response.getEntity();
-			InputStream in = httpEntity.getContent();
+			
 			String encoding = "gb2312";
 			String content="";
+			
 			String temp = null;
 			if (httpEntity != null) {
-//				encoding=getCharSetByHead(httpEntity);
-//				content=EntityUtils.toString(httpEntity);
 				if ((temp = getCharSetByHead(httpEntity)) != null){ //If we can get the charset by the header.
 					encoding = temp;
-					BufferedReader br = new BufferedReader(new InputStreamReader(in,encoding));
-					String tempbf;  
-					StringBuffer html = new StringBuffer(100);  
-					while ((tempbf = br.readLine()) != null)  
-					    html.append(tempbf +"\n");  
-					content=html.toString();
-					br.close();
+					content=EntityUtils.toString(httpEntity,encoding);
 				}
 				else{
+					byte[] in=EntityUtils.toByteArray(httpEntity);
 					InputStreamWapper isw=new InputStreamWapper(in);
 					encoding=isw.getCharSet();
 					content=isw.getContent();
