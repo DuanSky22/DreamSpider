@@ -22,7 +22,7 @@ public class StorerInFile implements Runnable,Storer{
 	private Manager manager=null;
 	private String baseUrl="D://dream sp";
 	private ParseResult pr=null;
-	private String[] format={"html","htm","asp","aspx","jsp"};
+	//private String[] format={"html","htm","asp","aspx","jsp"};
 	public StorerInFile(Manager manager){
 		this.manager=manager;
 		this.baseUrl=manager.getDsc().getDir();
