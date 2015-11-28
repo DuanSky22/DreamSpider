@@ -20,7 +20,7 @@
 	<page-number>10000</page-number>
 	
 	<!-- Where the page stores, default is D://dream spider-->
-	<dir>D://Dream Spider/163/</dir>
+	<dir>D://Dream Spider/  163/</dir>
 	
 	<!-- Only parse the url that is the sub url of the urls
 	For example the urls you given is http://htmlparser.sourceforge.net/,
