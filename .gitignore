@@ -1,6 +1,6 @@
 /target/
 
 /.settings/
-dream-spider.xml
+/src/main/resources/dream-spider.xml
 .classpath
 .project
