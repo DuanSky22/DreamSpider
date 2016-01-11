@@ -40,25 +40,27 @@ public class Worker implements Runnable {
 	private Manager manager = null;
 	private ParseResult pr = null;
 	private DreamSpiderConfig dsc = null;
-	CloseableHttpClient httpclient = null;
+
 
 	public Worker(Manager manager) {
 		this.manager = manager;
 		this.pr = manager.getPr();
 		this.dsc = manager.getDsc();
-		this.httpclient = HttpClients.createDefault();
+
 	}
 
 	public void run() {
 		while (manager.isAlive()) {
 			UrlWapper urlWapper = pr.fetchWaitingUrl();
+
 			if (urlWapper != null) { // the queue is not empty which means there
 										// are url waiting for parsing.
 				String url = urlWapper.getUrl();
 				// this url must below the most deep.
 				if (urlWapper.getDeep() > manager.getDsc().getDeep()) 
 					continue;
-				CloseableHttpResponse response = getResponseByConfig(url);
+				CloseableHttpClient httpclient  = HttpClients.createDefault();
+				CloseableHttpResponse response = getResponseByConfig(httpclient,url);
 				if (response != null) {
 					StatusLine statusLine = response.getStatusLine();
 					int statusCode = statusLine.getStatusCode();
@@ -145,8 +147,8 @@ public class Worker implements Runnable {
 	}
 
 	
-
-	private CloseableHttpResponse getResponseByConfig(String url) {
+//			CloseableHttpClient httpclient  = HttpClients.createDefault();
+	private CloseableHttpResponse getResponseByConfig(CloseableHttpClient httpclient,String url) {
 		CloseableHttpResponse response = null;
 		if (dsc.isNeedAuthority()) {// This web need login?
 			HttpPost httpPost = new HttpPost(url);

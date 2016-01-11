@@ -2,15 +2,15 @@
 
 <spider>
 
-	<!-- The spider parses url list,use [,] to separate the url.-->
-	<urls>http://www.163.com/</urls>
+	<!-- The spider parses url list,use , to separate the url.-->
+	<urls>http://finance.sina.com.cn/</urls>
 	
 	<!--The spider parse mode. 
 	[attach] means this spider will join the master spider,so you should config the master ip address; 
 	[single] means this spider will parse alone, here you shouldn't config the master ip address  -->
 	<mode>single</mode>
 	<master-ip></master-ip>
-	<!-- The worker number means how many worker will parse together. -->
+	<!-- The worker number means how many worker will parse at the same time. -->
 	<worker-number>4</worker-number>
 	
 	<!-- The deep that the spider will mostly parse -->
@@ -20,16 +20,16 @@
 	<page-number>10000</page-number>
 	
 	<!-- Where the page stores, default is D://dream spider-->
-	<dir>D://Dream Spider/163/</dir>
+	<dir>D://Dream Spider/xinlang/</dir>
 	
 	<!-- Only parse the url that is the sub url of the urls
 	For example the urls you given is http://htmlparser.sourceforge.net/,
-	only http://htmlparser.sourceforge.net/****** url will parsed. If the 
+	only http://htmlparser.sourceforge.net/****** url will be parsed. If the 
 	url not started with http://htmlparser.sourceforge.net/ , it will be ignored.
 	
 	  -->
-	<only-inside>true</only-inside>
-	<!-- When the web the user want to parse need username and password, you must provide the username & password -->
+	<only-inside>false</only-inside>
+	<!-- When the web the user want to parse needed username & password, you must provide the username & password -->
 	<need-authority>false</need-authority>
 	<username></username>
 	<userpassword></userpassword>

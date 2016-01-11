@@ -37,7 +37,7 @@ public class Manager {
 																// that the
 																// waiting queue
 																// is empty.
-	private final int MAX_EMPTY_NUMS = 600; // if more than MAX_EMPTY_NUMS times
+	private final int MAX_EMPTY_NUMS = 60; // if more than MAX_EMPTY_NUMS times
 											// the waiting queue is still empty,
 											// we shut down it.
 	private AtomicBoolean currentManagerState = new AtomicBoolean(true); // is
@@ -77,8 +77,9 @@ public class Manager {
 					System.out
 							.println("========The number of this manager can parsed is overflow!========");
 				}
-				if (pr.getWaitingUrlSize() == 0) {
-
+				if (pr.isWaitingUrlEmpty()) {
+					if(!pr.isSwapUrlEmpty()) //can we fetch a url from the remote swap url list?
+						pr.addWaitingUrlFromSwapUrl();
 					if (emptyTimes.incrementAndGet() > MAX_EMPTY_NUMS) {
 						currentManagerState.set(false);
 						System.out

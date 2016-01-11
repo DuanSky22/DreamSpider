@@ -11,5 +11,6 @@ public class DreamSpiderString {
 	public static final String Z_DISTRIBUTE_LOCK="lock";
 	public static final String Z_TOTAL_URLS="totalUrls";
 	public static final String Z_ACTIVE="active";
+	public static final String Z_SWAP_URLS="swapUrls";
 	
 }
