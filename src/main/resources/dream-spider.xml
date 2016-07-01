@@ -17,7 +17,7 @@
 	<deep>4</deep>
 	
 	<!-- The number of pages that the spider will mostly parse -->
-	<page-number>10000</page-number>
+	<page-number>1000000</page-number>
 	
 	<!-- Where the page stores, default is D://dream spider-->
 	<dir>D://Dream Spider/xinlang/</dir>
