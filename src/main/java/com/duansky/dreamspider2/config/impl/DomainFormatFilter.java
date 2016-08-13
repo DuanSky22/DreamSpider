@@ -20,6 +20,10 @@ public class DomainFormatFilter implements FormatFilter{
         this.domainPattern = Pattern.compile(domainString);
     }
 
+    public DomainFormatFilter(List<String> domains){
+        this(domains.toArray(new String[]{}));
+    }
+
     public DomainFormatFilter(String[] domains){
         StringBuffer sb = new StringBuffer();
         /** 如果用户没有限定域名，则默认匹配任意字符。否则，匹配用户指定的域名。*/

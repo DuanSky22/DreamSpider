@@ -14,19 +14,30 @@ import java.util.List;
 public class DreamSpiderContext {
 
     /**数据**/
-    DreamSpiderConfig config;
-    FormatFilterChain chain;
+    DreamSpiderConfig config;   //配置文件
+    FormatFilterChain chain;    //FormatFilter链
 
     /**工具类**/
     DreamSpiderConfigParser parser = DreamSpiderConfigParser.INSTANCE;
-    FormatFilterRegistry registry = FormatFilterRegistry.instance;
+    FormatFilterRegistry registry = FormatFilterRegistry.INSTANCE;
+
+    public static final DreamSpiderContext INSTANCE = new DreamSpiderContext();
+
+    public DreamSpiderContext(){
+        init();
+    }
+
+    public DreamSpiderContext(DreamSpiderConfig config){
+        this.config = config;
+        chain = new DefaultFormatFilterChain(getChain0());
+    }
 
     private void init(){
         config = parser.getDreamSpiderConfig();
-
+        chain = new DefaultFormatFilterChain(getChain0());
     }
 
-    private void initChain(){
+    private List<FormatFilter> getChain0(){
         /**必须是合法的URL。**/
         registry.registerFormatFilter(FormatFilters.getUrlFormatFilter());
 
@@ -45,7 +56,17 @@ public class DreamSpiderContext {
         /**URL是否必须在用户指定的域名内**/
         boolean inside = config.isOnlyInside();
         if(inside)
-            registry.registerFormatFilter(FormatFilters.newDomainFormatFilter(config.getDir()));
+            registry.registerFormatFilter(FormatFilters.newDomainFormatFilter(config.getUrlList()));
+
+        return registry.getFormatFilters();
+    }
+
+    public DreamSpiderConfig getConfig() {
+        return config;
+    }
+
+    public FormatFilterChain getChain(){
+        return chain;
     }
 
 

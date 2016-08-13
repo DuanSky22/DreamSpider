@@ -33,4 +33,8 @@ public class DeafultFormatFilterRegistry implements FormatFilterRegistry {
     public int size() {
         return filters.size();
     }
+
+    public List<FormatFilter> getFormatFilters(){
+        return filters;
+    }
 }
