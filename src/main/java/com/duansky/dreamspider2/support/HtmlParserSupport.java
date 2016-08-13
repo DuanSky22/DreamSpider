@@ -56,38 +56,6 @@ public class HtmlParserSupport {
         return pos;
     }
 
-    public List<String> getUrlList(String url){
-        Parser parser=ParserWapper.getInstance();
-        List<String> urls=new ArrayList<String>();
-        try {
-            parser.setURL(url);
-            for(NodeIterator iter=parser.elements();iter.hasMoreNodes();)
-                _getUrlList(iter.nextNode(),urls);
-
-        } catch (ParserException e) {
-            e.printStackTrace();
-        }
-        return urls;
-    }
-
-    public List<String> getUrlList(Node node){
-        List<String> urls=new ArrayList<String>();
-        _getUrlList(node,urls);
-        return urls;
-    }
-
-    private void _getUrlList(Node node,List<String> urls){
-        if(node instanceof LinkTag){
-            String url=((LinkTag) node).getLink();
-            if()
-                    urls.add(url);
-        }
-        if(node==null || node.getChildren()==null)
-            return;
-        for(Node child : node.getChildren().toNodeArray())
-            _getUrlList(child,urls);
-    }
-
     public static void main(String args[]){
 //		List<String> domains=new ArrayList<String>();
 //		domains.add("http://htmlparser.sourceforge.net/");

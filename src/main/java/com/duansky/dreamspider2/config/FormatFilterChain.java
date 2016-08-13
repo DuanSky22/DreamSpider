@@ -9,5 +9,5 @@ import java.util.List;
  */
 public interface FormatFilterChain {
     UrlWapper getUrlWapper();
-    boolean filter(String url);
+    boolean proceed(String url);
 }

@@ -27,25 +27,20 @@ public class DefaultFormatFilterChain implements FormatFilterChain{
      */
     private int currentIndex = -1;
 
-    /**
-     * 过滤结果。
-     */
-    private boolean result = true;
-
     public DefaultFormatFilterChain(List<FormatFilter> filters){
         this.filters = filters;
     }
 
-    public boolean filter(String url) {
-        if(currentIndex == filters.size() - 1)
-            return result;
+    public boolean proceed(String url) {
+        if(currentIndex == filters.size())
+            return true;
         FormatFilter filter = filters.get(++currentIndex);
         boolean currResult = filter.proceed(this);
         /**如果没有通过当前的过滤器，则直接返回false;否则继续往下传。**/
         if(currResult == false)
             return false;
         else
-            return filter(url);
+            return proceed(url);
     }
 
     public UrlWapper getUrlWapper() {
