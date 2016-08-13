@@ -2,37 +2,48 @@
 
 <spider>
 
-	<!-- The spider parses url list,use , to separate the url.-->
+	<!-- 希望爬取的URL列表，用逗号【,】隔开-->
 	<urls>http://finance.sina.com.cn/</urls>
-	
-	<!--The spider parse mode. 
-	[attach] means this spider will join the master spider,so you should config the master ip address; 
-	[single] means this spider will parse alone, here you shouldn't config the master ip address  -->
+
+	<!-- 希望爬取的格式
+	[webpage] 网页:.html,.htm,.jsp,.asp;
+	[picture] 图片:bmp,jpg,tiff,gif,pcx,tga,exif,fpx,svg,psd,cdr,pcd,dxf,ufo,eps,ai,raw
+	[video]   视频:wmv,asf,rm,rmvb,mov,avi,dat,mpg,mpeg
+	[doc]     文档:pdf,doc,docx,
+	-->
+	<formats>webpage,picture,video,voice,doc</formats>
+
+	<!-- 用户自定义的后缀名扩展格式-->
+	<format-extends></format-extends>
+
+	<!--爬虫运行的模式.
+	[attach] 依附模式。此爬虫需要依赖其他的爬虫，因此需要给出其他爬虫集群的地址，即master-ip.
+	[single] 单独模式。此爬虫不需要依赖其他爬虫，单独启动并运行。此模式下不需要列出其他爬虫地址。 -->
 	<mode>single</mode>
 	<master-ip></master-ip>
-	<!-- The worker number means how many worker will parse at the same time. -->
+
+	<!-- 在一个进程中启动多少个爬虫同时进行爬取。 -->
 	<worker-number>4</worker-number>
 	
-	<!-- The deep that the spider will mostly parse -->
+	<!-- 爬取网页的深度。例如 a网页有链接到b，b网页有链接到c，那么c网页的深度为3,避免过深的爬取网页。
+	 如果设置的值为-1，表示不限深度。-->
 	<deep>4</deep>
 	
-	<!-- The number of pages that the spider will mostly parse -->
+	<!-- 爬取网页的总量。总共需要爬取多少个网页，如果设置的值为-1，表示不限总量。 -->
 	<page-number>1000000</page-number>
 	
-	<!-- Where the page stores, default is D://dream spider-->
+	<!-- 爬取的网页存入的地址。默认情况下保存在本地磁盘中。-->
 	<dir>D://Dream Spider/xinlang/</dir>
 	
-	<!-- Only parse the url that is the sub url of the urls
-	For example the urls you given is http://htmlparser.sourceforge.net/,
-	only http://htmlparser.sourceforge.net/****** url will be parsed. If the 
-	url not started with http://htmlparser.sourceforge.net/ , it will be ignored.
-	
+	<!--是否只爬取用户给的种子地址内的网页。例如用户给出的网址是：http://htmlparser.sourceforge.net/，
+	那么所有爬取的网页必须是以该网址开头的网页，即满足http://htmlparser.sourceforge.net/******形式。
+	如果不是以这个网址开头，则会被略过。
 	  -->
-	<only-inside>false</only-inside>
-	<!-- When the web the user want to parse needed username & password, you must provide the username & password -->
+	<only-inside>true</only-inside>
+
+	<!-- 当爬取的网页需要用户名和密码时，需要输入在如下节点中配置用户名和密码。 -->
 	<need-authority>false</need-authority>
 	<username></username>
 	<userpassword></userpassword>
-	
 	
 </spider>

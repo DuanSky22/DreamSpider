@@ -10,13 +10,44 @@ import java.util.List;
 
 public class DreamSpiderConfig {
 
+	/**
+	 * 需要爬取网站的URL列表。
+	 */
 	private List<String> urlList = new ArrayList<String>();
+
+	/**
+	 * 爬取模式：single / attach。
+	 */
 	private Mode mode=Mode.SINGLE;
+
+	/**
+	 * 主爬虫节点：在attach模式下，需要配置爬虫（集群）的IP地址，以便
+	 * 该节点能够连接到爬虫集群中。
+	 */
 	private String masterIp=null;
+
+	/**
+	 * 爬虫的数目。
+	 */
 	private int workerNumber = 4;
+
+	/**
+	 * 爬取页面的深度。例如 a网页有链接到b，b网页有链接到c，那么c网页的深度为3,避免过深的爬取网页。
+	 如果设置的值为-1，表示Integer的最大值。
+	 */
 	private int deep = 20;
+
+	/**
+	 * 爬取网页的总量。总共需要爬取多少个网页，如果设置的值为-1，表示为Long的最大值。
+	 */
 	private long pageNubmer = 1000000L;
+
+	/**
+	 * 爬取的网页存入的地址。默认情况下保存在本地磁盘中。
+	 */
 	private String dir="D://dream spider";
+
+
 	private boolean onlyInside=true;
 	private boolean needAuthority=false;
 	private String username="";
@@ -62,8 +93,21 @@ public class DreamSpiderConfig {
 		this.pageNubmer = pageNubmer;
 	}
 
+	/**
+	 * 爬虫的爬取模式。
+	 */
 	public static enum Mode {
-		SINGLE("single"), ATTACH("attach");
+		/**
+		 * 单独模式下，此爬虫单独爬取用户指定的页面。与其他的爬虫实例无关。
+		 */
+		SINGLE("single"),
+
+		/**
+		 * 依附模式下，此爬虫链接到某个爬虫（集群），从他们的待爬取队列中来接着爬取网页。
+		 */
+		ATTACH("attach");
+
+
 		private String description;
 
 		public String getDescription() {

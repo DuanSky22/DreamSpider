@@ -1,6 +1,6 @@
 /**
 * @author DuanSky
-* @date 2015Äê11ÔÂ17ÈÕ ÏÂÎç4:12:59
+* @date 2015ï¿½ï¿½11ï¿½ï¿½17ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½4:12:59
 * @content 
 */
 package com.duansky.dreamspider.main;
@@ -8,7 +8,7 @@ package com.duansky.dreamspider.main;
 public class ConfigParserTest {
 	
 	public static void main(String args[]){
-		DreamSpiderConfig config=SpiderConfigParser.getConfig();
+		DreamSpiderConfig config= DreamSpiderConfigParser.getConfig();
 	}
 
 }

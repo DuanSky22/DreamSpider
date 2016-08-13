@@ -1,12 +1,15 @@
 /**
 * @author DuanSky
-* @date 2015Äê11ÔÂ19ÈÕ ÏÂÎç8:16:05
+* @date 2015ï¿½ï¿½11ï¿½ï¿½19ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½8:16:05
 * @content 
 */
 package com.duansky.dreamspider.bean;
 
 import java.io.Serializable;
 
+/**
+ * ErrorPage is the page that the
+ */
 public class ErrorPage extends Page implements Serializable{
 
 	/**

@@ -16,7 +16,7 @@ import com.hazelcast.core.ILock;
 import com.hazelcast.core.IQueue;
 import com.hazelcast.core.ISet;
 /**
- * ParseResult record the parse result, includes waiting/parsed/failed url list.
+ * ParseResult records the parse result, includes waiting/parsed/failed url list.
  * 
 * @author DuanSky
 * @date 2015年11月17日 下午4:33:51

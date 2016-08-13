@@ -27,25 +27,6 @@ public abstract class Page implements Serializable{
 	public void setUrlWapper(UrlWapper urlWapper) {
 		this.urlWapper = urlWapper;
 	}
-	
-	public static void main(String args[]){
-
-		Queue<UrlWapper> urls=new LinkedList<UrlWapper>();
-		for(int i=1;i<10;i++){
-			UrlWapper urlWapper=new UrlWapper();
-			urlWapper.setUrl(i+"");
-			urlWapper.setDeep(i);
-			urls.add(urlWapper);
-		}
-		for(int i=1;i<10;i++){
-			UrlWapper urlWapper=new UrlWapper();
-			urlWapper.setUrl(i+"");
-			urlWapper.setDeep(i*2);
-			if(urls.contains(urlWapper))
-				System.out.println("exists!");
-		}
-		
-	}
 
 	public String getContent() {
 		return content;

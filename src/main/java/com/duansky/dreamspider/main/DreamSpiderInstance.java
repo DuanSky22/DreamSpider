@@ -21,7 +21,7 @@ public class DreamSpiderInstance {
 	private  HazelcastInstance node;
 	
 	public DreamSpiderInstance(){
-		this(SpiderConfigParser.getConfig());
+		this(DreamSpiderConfigParser.getConfig());
 	}
 	
 	public DreamSpiderInstance(DreamSpiderConfig dsc){
