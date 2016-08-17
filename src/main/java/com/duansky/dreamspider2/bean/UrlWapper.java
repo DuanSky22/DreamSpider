@@ -25,7 +25,11 @@ public class UrlWapper implements Serializable{
 	 */
 	private int deep;
 	
-	
+	public UrlWapper(String url,int deep){
+		this.url = url;
+		this.deep = deep;
+	}
+
 	public String getUrl() {
 		return url;
 	}

@@ -9,7 +9,7 @@
 	[webpage] 网页:.html,.htm,.jsp,.asp;
 	[picture] 图片:bmp,jpg,tiff,gif,pcx,tga,exif,fpx,svg,psd,cdr,pcd,dxf,ufo,eps,ai,raw
 	[video]   视频:wmv,asf,rm,rmvb,mov,avi,dat,mpg,mpeg
-	[doc]     文档:pdf,doc,docx,
+	[doc]     文档:pdf,doc,docx
 	-->
 	<formats>webpage,picture,video,voice,doc</formats>
 

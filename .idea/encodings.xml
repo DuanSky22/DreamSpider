@@ -17,5 +17,7 @@
     <file url="file://$PROJECT_DIR$/src/main/java/com/duansky/dreamspider/store/StorerInFile.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/duansky/dreamspider/util/DreamSpiderString.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/duansky/dreamspider2/config/impl/DreamSpiderConfig.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/duansky/dreamspider2/hazelcast/HazelcastNode.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/duansky/dreamspider2/parser/Worker.java" charset="GBK" />
   </component>
 </project>

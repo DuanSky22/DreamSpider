@@ -1,6 +1,6 @@
 package com.duansky.dreamspider2.config.impl;
 
-import com.duansky.dreamspider2.config.FormatFilter;
+import com.duansky.dreamspider2.config.UrlFilter;
 import com.duansky.dreamspider2.config.FormatFilterRegistry;
 
 import java.util.LinkedList;
@@ -12,9 +12,9 @@ import java.util.List;
 public class DeafultFormatFilterRegistry implements FormatFilterRegistry {
 
 
-    List<FormatFilter> filters = new LinkedList<FormatFilter>();
+    List<UrlFilter> filters = new LinkedList<UrlFilter>();
 
-    public boolean registerFormatFilter(FormatFilter filter) {
+    public boolean registerFormatFilter(UrlFilter filter) {
         if(!filters.contains(filter)) {
             filters.add(filter);
             return true;
@@ -22,7 +22,7 @@ public class DeafultFormatFilterRegistry implements FormatFilterRegistry {
         return false;
     }
 
-    public boolean deleteFormatFilter(FormatFilter filter) {
+    public boolean deleteFormatFilter(UrlFilter filter) {
         if(filters.contains(filter)) {
             filters.remove(filter);
             return true;
@@ -34,7 +34,7 @@ public class DeafultFormatFilterRegistry implements FormatFilterRegistry {
         return filters.size();
     }
 
-    public List<FormatFilter> getFormatFilters(){
+    public List<UrlFilter> getFormatFilters(){
         return filters;
     }
 }

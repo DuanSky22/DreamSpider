@@ -9,10 +9,10 @@ import java.util.List;
  */
 public interface FormatFilterRegistry {
 
-    boolean registerFormatFilter(FormatFilter filter);
-    boolean deleteFormatFilter(FormatFilter filter);
+    boolean registerFormatFilter(UrlFilter filter);
+    boolean deleteFormatFilter(UrlFilter filter);
     int size();
-    List<FormatFilter> getFormatFilters();
+    List<UrlFilter> getFormatFilters();
 
     FormatFilterRegistry INSTANCE = new DeafultFormatFilterRegistry();
 
