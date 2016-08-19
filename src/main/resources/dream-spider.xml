@@ -33,7 +33,7 @@
 	<page-number>1000000</page-number>
 	
 	<!-- 爬取的网页存入的地址。默认情况下保存在本地磁盘中。-->
-	<dir>D://Dream Spider/xinlang/</dir>
+	<dir>D://Dream Spider/</dir>
 	
 	<!--是否只爬取用户给的种子地址内的网页。例如用户给出的网址是：http://htmlparser.sourceforge.net/，
 	那么所有爬取的网页必须是以该网址开头的网页，即满足http://htmlparser.sourceforge.net/******形式。
